@@ -45,7 +45,15 @@ function palindrome(str) {
   const reversedString = str.split("").reduce((reversed, character) => {
     return character + reversed;
   }, "");
-  if (str === reversedString) {
-    return true;
-  }
+  // if (str === reversedString) {
+  //   return true;
+  // }
+  return str === reversedString;
+}
+
+function palindromeWithEvery(str) {
+  return str.split("").every((char, index) => {
+    let lastChar = str[str.length - index - 1];
+    return char === lastChar;
+  });
 }
