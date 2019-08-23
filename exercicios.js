@@ -57,3 +57,25 @@ function palindromeWithEvery(str) {
     return char === lastChar;
   });
 }
+
+// --- Directions
+// Given an integer, return an integer that is the reverse
+// ordering of numbers.
+// --- Examples
+//   reverseInt(15) === 51
+//   reverseInt(981) === 189
+//   reverseInt(500) === 5
+//   reverseInt(-15) === -51
+//   reverseInt(-90) === -9
+
+function reverseInt(n) {
+  const numeroInvertido = parseInt(
+    n
+      .toString()
+      .split("")
+      .reduce((acc, init) => {
+        return init + acc;
+      })
+  );
+  return Math.sign(n) < 0 ? numeroInvertido * -1 : numeroInvertido;
+}
