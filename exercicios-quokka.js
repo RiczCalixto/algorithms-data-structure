@@ -1,3 +1,5 @@
+// quokka init = ctrl + k + q
+
 function reverse(str) {
   // const trimStr = str.trim()
   const splitStr = str.split("");
@@ -8,6 +10,7 @@ function reverse(str) {
   console.log(joinStr);
   return joinStr;
 }
+reverse("caralho    ");
 
 function reverseWithLoop(str) {
   let newString = "";
@@ -17,39 +20,27 @@ function reverseWithLoop(str) {
   return newString;
 }
 
-reverseWithLoop("puta merda");
-
 function reverseWithLoopOtherSyntax(str) {
   let newString = "";
   for (char of str) {
-    newString = char + str;
+    console.log(char);
+    console.log(newString);
+    newString = char + newString;
+    console.log(newString);
   }
   return newString;
 }
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
-function reverseUsingReduce(str) {}
-return str.split("").reduce((reversed, character) => {
-  return character + reversed;
-}, "");
 
-// --- Directions
-// Given a string, return true if the string is a palindrome
-// or false if it is not.  Palindromes are strings that
-// form the same word if it is reversed. *Do* include spaces
-// and punctuation in determining if the string is a palindrome.
-// --- Examples:
-//   palindrome("abba") === true
-//   palindrome("abcdefg") === false
+console.log(reverseWithLoopOtherSyntax("puta merda"));
 
 function palindrome(str) {
   const reversedString = str.split("").reduce((reversed, character) => {
     return character + reversed;
   }, "");
-  // if (str === reversedString) {
-  //   return true;
-  // }
-  return str === reversedString;
+  console.log(reversedString);
 }
+
+console.log(palindrome(""));
 
 function palindromeWithEvery(str) {
   return str.split("").every((char, index) => {
@@ -58,36 +49,37 @@ function palindromeWithEvery(str) {
   });
 }
 
-// --- Directions
-// Given an integer, return an integer that is the reverse
-// ordering of numbers.
-// --- Examples
-//   reverseInt(15) === 51
-//   reverseInt(981) === 189
-//   reverseInt(500) === 5
-//   reverseInt(-15) === -51
-//   reverseInt(-90) === -9
+function palindromeWithEvery(str) {
+  return str.split("").every((char, index) => {
+    let lastChar = str[str.length - index - 1];
+    console.log(str.length);
+    console.log(index);
+    console.log(lastChar);
+    console.log(char);
+    return char === lastChar;
+  });
+}
+
+console.log(palindromeWithEvery("aabaa"));
 
 function reverseInt(n) {
   const numeroInvertido = parseInt(
     n
       .toString()
       .split("")
+      .filter(value => {
+        if (value !== "0") {
+          return value;
+        }
+      })
       .reduce((acc, init) => {
         return init + acc;
       })
   );
-  return Math.sign(n) < 0 ? numeroInvertido * -1 : numeroInvertido;
+  return Math.sign(n) > 0 ? numeroInvertido : numeroInvertido * -1;
 }
 
-
-// --- Directions
-// Given a string, return the character that is most
-// commonly used in the string.
-// --- Examples
-// maxChar("abcccccccd") === "c"
-// maxChar("apple 1231111") === "1"
-
+console.log(reverseInt(-1234005678900));
 function maxChar(str) {
   const obj = {};
   str.split('').reduce((object, key) => {
@@ -97,15 +89,25 @@ function maxChar(str) {
       object[key] = 1
       return object
   }, obj)
-
+  console.log(obj)
+  
   let counter = 1
   let maxChar = str
   
   for(keys of str){
+    console.log(str)
+    console.log(keys)
+
     if(obj[keys] > counter){
       counter += 1
       maxChar = keys
+      console.log(maxChar)
     }
   }
-  return maxChar.toString()
+  console.log(maxChar.toString())
+  return maxChar
+
 }
+
+console.log(maxChar('25135'))
+
