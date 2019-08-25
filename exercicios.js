@@ -90,6 +90,9 @@ function reverseInt(n) {
 
 function maxChar(str) {
   const obj = {};
+  let counter = 0
+  let maxChar = ''
+
   str.split('').reduce((object, key) => {
     if(key in object){
       object[key] ++
@@ -98,14 +101,34 @@ function maxChar(str) {
       return object
   }, obj)
 
-  let counter = 1
-  let maxChar = str
-  
   for(keys of str){
     if(obj[keys] > counter){
       counter += 1
       maxChar = keys
     }
   }
-  return maxChar.toString()
+  return maxChar
+}
+
+// Com {for of} e {for in}
+function maxChar(str) {
+  const obj = {};
+  let counter = 0;
+  let maxChar = '';
+
+  for(char of str) {
+    if(obj[char]) {
+      obj[char] ++
+    } else {
+      obj[char] =1
+    }
+  }
+  
+  for(key in obj){
+    if(obj[key] > counter){
+      counter += 1
+      maxChar = key
+    }
+  }
+  return maxChar
 }

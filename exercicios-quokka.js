@@ -82,6 +82,9 @@ function reverseInt(n) {
 console.log(reverseInt(-1234005678900));
 function maxChar(str) {
   const obj = {};
+  let counter = 0
+  let maxChar = str
+  
   str.split('').reduce((object, key) => {
     if(key in object){
       object[key] ++
@@ -90,10 +93,7 @@ function maxChar(str) {
       return object
   }, obj)
   console.log(obj)
-  
-  let counter = 1
-  let maxChar = str
-  
+
   for(keys of str){
     console.log(str)
     console.log(keys)
@@ -109,5 +109,5 @@ function maxChar(str) {
 
 }
 
-console.log(maxChar('25135'))
+console.log(maxChar('casa caralhuddd'))
 
