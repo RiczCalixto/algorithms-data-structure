@@ -80,7 +80,6 @@ function reverseInt(n) {
   return Math.sign(n) < 0 ? numeroInvertido * -1 : numeroInvertido;
 }
 
-
 // --- Directions
 // Given a string, return the character that is most
 // commonly used in the string.
@@ -90,47 +89,46 @@ function reverseInt(n) {
 
 function maxChar(str) {
   const obj = {};
-  let counter = 0
-  let maxChar = ''
+  let counter = 0;
+  let maxChar = "";
 
-  str.split('').reduce((object, key) => {
-    if(key in object){
-      object[key] ++
-    } else
-      object[key] = 1
-      return object
-  }, obj)
+  str.split("").reduce((object, key) => {
+    if (key in object) {
+      object[key]++;
+    } else object[key] = 1;
+    return object;
+  }, obj);
 
-  for(keys of str){
-    if(obj[keys] > counter){
-      counter += 1
-      maxChar = keys
+  for (keys of str) {
+    if (obj[keys] > counter) {
+      counter += 1;
+      maxChar = keys;
     }
   }
-  return maxChar
+  return maxChar;
 }
 
 // Com {for of} e {for in}
 function maxChar(str) {
   const obj = {};
   let counter = 0;
-  let maxChar = '';
+  let maxChar = "";
 
-  for(char of str) {
-    if(obj[char]) {
-      obj[char] ++
+  for (char of str) {
+    if (obj[char]) {
+      obj[char]++;
     } else {
-      obj[char] =1
+      obj[char] = 1;
     }
   }
-  
-  for(key in obj){
-    if(obj[key] > counter){
-      counter += 1
-      maxChar = key
+
+  for (key in obj) {
+    if (obj[key] > counter) {
+      counter += 1;
+      maxChar = key;
     }
   }
-  return maxChar
+  return maxChar;
 }
 
 // --- Directions
@@ -148,16 +146,15 @@ function maxChar(str) {
 //   buzz
 
 function fizzBuzz(n) {
-  for(let i = 1; i <= n; i++){
-    if(i%3 === 0 && i%5 === 0) {
-     console.log('fizzbuzz')
-    }
-    else if(i%3 === 0) {
-      console.log('fizz')
-    } else if (i%5 === 0) {
-      console.log('buzz')
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+    } else if (i % 5 === 0) {
+      console.log("buzz");
     } else {
-      console.log(i)
+      console.log(i);
     }
   }
 }
@@ -173,14 +170,29 @@ function fizzBuzz(n) {
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
 function chunk(array, size) {
-  let chunkedArray = [];
+  const chunkedArray = [];
   for (value of array) {
-    let lastArray = chunkedArray[chunkedArray.length - 1];
-    if(!lastArray || lastArray.length === size) {
-      chunkedArray.push([value])
+    const lastElement = chunkedArray[chunkedArray.length - 1];
+    if (!lastElement || lastElement.length === size) {
+      chunkedArray.push([value]);
     } else {
-      lastArray.push(value)
+      lastElement.push(value);
     }
   }
+  return chunkedArray;
+}
+
+function chunkSlice(array, size) {
+  const chunkedArray = [];
+  let index = 0;
+
+  while(index < array.length) {
+    console.log(index)
+    console.log(array.slice(index, index+size))
+    chunkedArray.push(array.slice(index, index+size))
+
+    index += size
+  }
+
   return chunkedArray
 }

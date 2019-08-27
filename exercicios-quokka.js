@@ -150,3 +150,20 @@ function chunk(array, size) {
 }
 
 console.log(chunk([2, 3, 4, 5, 6], 2))
+
+function chunkSlice(array, size) {
+  const chunkedArray = [];
+  let index = 0;
+
+  while(index < array.length) {
+    console.log(index)
+    console.log(array.slice(index, index+size))
+    chunkedArray.push(array.slice(index, index+size))
+
+    index += size
+  }
+
+  return chunkedArray
+}
+
+console.log(chunkSlice([2, 3, 4, 5, 6], 2))
