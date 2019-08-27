@@ -128,3 +128,25 @@ function fizzBuzz(n) {
 
 console.log(fizzBuzz(15))
 
+function chunk(array, size) {
+  let result = []
+  for(value of array) {
+    console.log(value)
+    let lastArray = result[result.length - 1]
+    console.log(result)
+    console.log(result[result.length -1])
+    console.log(lastArray)
+    if(!lastArray || lastArray.length == size){
+      console.log(lastArray)
+      console.log([value])
+      result.push([value])
+    } else {
+      console.log(value)
+      lastArray.push(value)
+    }
+  }
+
+  return result
+}
+
+console.log(chunk([2, 3, 4, 5, 6], 2))
