@@ -82,88 +82,142 @@ function reverseInt(n) {
 console.log(reverseInt(-1234005678900));
 function maxChar(str) {
   const obj = {};
-  let counter = 0
-  let maxChar = str
-  
-  str.split('').reduce((object, key) => {
-    if(key in object){
-      object[key] ++
-    } else
-      object[key] = 1
-      return object
-  }, obj)
-  console.log(obj)
+  let counter = 0;
+  let maxChar = str;
 
-  for(keys of str){
-    console.log(str)
-    console.log(keys)
+  str.split("").reduce((object, key) => {
+    if (key in object) {
+      object[key]++;
+    } else object[key] = 1;
+    return object;
+  }, obj);
+  console.log(obj);
 
-    if(obj[keys] > counter){
-      counter += 1
-      maxChar = keys
-      console.log(maxChar)
+  for (keys of str) {
+    console.log(str);
+    console.log(keys);
+
+    if (obj[keys] > counter) {
+      counter += 1;
+      maxChar = keys;
+      console.log(maxChar);
     }
   }
-  console.log(maxChar.toString())
-  return maxChar
-
+  console.log(maxChar.toString());
+  return maxChar;
 }
 
-console.log(maxChar('casa caralhuddd'))
+console.log(maxChar("casa caralhuddd"));
 
 function fizzBuzz(n) {
-  for(let i = 1; i <= n; i++){
-    if(i%3 === 0 && i%5 === 0) {
-     console.log('fizzbuss')
-    }
-    else if(i%3 === 0) {
-      console.log('fizz')
-    } else if (i%5 === 0) {
-      console.log('buzz')
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuss");
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+    } else if (i % 5 === 0) {
+      console.log("buzz");
     } else {
-      console.log(i)
+      console.log(i);
     }
   }
 }
 
-console.log(fizzBuzz(15))
+console.log(fizzBuzz(15));
 
 function chunk(array, size) {
-  let result = []
-  for(value of array) {
-    console.log(value)
-    let lastArray = result[result.length - 1]
-    console.log(result)
-    console.log(result[result.length -1])
-    console.log(lastArray)
-    if(!lastArray || lastArray.length == size){
-      console.log(lastArray)
-      console.log([value])
-      result.push([value])
+  let result = [];
+  for (value of array) {
+    console.log(value);
+    let lastArray = result[result.length - 1];
+    console.log(result);
+    console.log(result[result.length - 1]);
+    console.log(lastArray);
+    if (!lastArray || lastArray.length == size) {
+      console.log(lastArray);
+      console.log([value]);
+      result.push([value]);
     } else {
-      console.log(value)
-      lastArray.push(value)
+      console.log(value);
+      lastArray.push(value);
     }
   }
 
-  return result
+  return result;
 }
 
-console.log(chunk([2, 3, 4, 5, 6], 2))
+console.log(chunk([2, 3, 4, 5, 6], 2));
 
 function chunkSlice(array, size) {
   const chunkedArray = [];
   let index = 0;
 
-  while(index < array.length) {
-    console.log(index)
-    console.log(array.slice(index, index+size))
-    chunkedArray.push(array.slice(index, index+size))
+  while (index < array.length) {
+    console.log(index);
+    console.log(array.slice(index, index + size));
+    chunkedArray.push(array.slice(index, index + size));
 
-    index += size
+    index += size;
   }
 
-  return chunkedArray
+  return chunkedArray;
 }
 
-console.log(chunkSlice([2, 3, 4, 5, 6], 2))
+console.log(chunkSlice([2, 3, 4, 5, 6], 2));
+
+function anagrams(stringA, stringB) {
+  const strA = stringA.replace(/[^\w]/g, "").toLowerCase();
+  const strB = stringB.replace(/[^\w]/g, "").toLowerCase();
+  console.log(strA);
+  console.log(strB);
+
+  const startingObjA = {};
+  const startingObjB = {};
+  if (strA.length !== strB.length) {
+    return false;
+  }
+
+  const objA = strA
+    .split("")
+    .sort()
+    .reduce((object, key) => {
+      console.log(object);
+      console.log(key);
+      if (key in object) {
+        object[key]++;
+      } else {
+        object[key] = 1;
+      }
+      return object;
+    }, startingObjA);
+
+  const objB = strB
+    .split("")
+    .sort()
+    .reduce((object, key) => {
+      console.log(object);
+      console.log(key);
+      if (key in object) {
+        object[key]++;
+      } else {
+        object[key] = 1;
+      }
+      return object;
+    }, startingObjB);
+
+  for (key in startingObjA) {
+    if (startingObjA[key] !== startingObjB[key]) {
+      return false;
+    }
+    return true;
+  }
+  console.log(Object.keys(objA));
+  console.log(Object.keys(objB));
+
+  if (objA === objB) {
+    return true;
+  }
+  return false;
+}
+
+console.log(anagrams("caralho    ", "lhocara  "));

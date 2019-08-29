@@ -186,13 +186,63 @@ function chunkSlice(array, size) {
   const chunkedArray = [];
   let index = 0;
 
-  while(index < array.length) {
-    console.log(index)
-    console.log(array.slice(index, index+size))
-    chunkedArray.push(array.slice(index, index+size))
+  while (index < array.length) {
+    console.log(index);
+    console.log(array.slice(index, index + size));
+    chunkedArray.push(array.slice(index, index + size));
 
-    index += size
+    index += size;
   }
 
-  return chunkedArray
+  return chunkedArray;
+}
+
+// --- Directions
+// Check to see if two provided strings are anagrams of eachother.
+// One string is an anagram of another if it uses the same characters
+// in the same quantity. Only consider characters, not spaces
+// or punctuation.  Consider capital letters to be the same as lower case
+// --- Examples
+//   anagrams('rail safety', 'fairy tales') --> True
+//   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
+//   anagrams('Hi there', 'Bye there') --> False
+
+function anagrams(stringA, stringB) {
+  const strA = stringA.replace(/[^\w]/g, "").toLowerCase();
+  const strB = stringB.replace(/[^\w]/g, "").toLowerCase();
+  const startingObjA = {};
+  const startingObjB = {};
+
+  if(strA.length !== strB.length) {
+    return false
+  }
+
+  const objA = strA.split("").sort().reduce((object, key) => {
+    if(key in object) {
+      object[key] ++
+    } else {
+      object[key] = 1
+    }
+    return object
+  }, startingObjA)
+
+  const objB = strB.split("").sort().reduce((object, key) => {
+    if(key in object) {
+      object[key] ++
+    } else {
+      object[key] = 1
+    }
+    return object
+  }, startingObjB)
+
+  for (key in startingObjA) {
+    if(startingObjA[key] !== startingObjB[key]) {
+      return false
+    }
+    return true
+  }
+  
+  if(objA === objB) {
+    return true
+  } 
 }
